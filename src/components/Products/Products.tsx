@@ -1,7 +1,7 @@
 import { type FunctionComponent, useEffect, useState } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 
-import { CurrencyFormatter } from '../CurrencyFormatter'
+import { CurrencyFormatter } from '../CurrencyFormatter/CurrencyFormatter'
 import classes from './products.module.scss'
 import { Loader } from '../Loader'
 

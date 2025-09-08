@@ -49,3 +49,10 @@
     -webkit-appearance: none;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  input {
+    color: rgb(17, 17, 17);
+    background-color: rgb(77, 77, 77);
+  }
+}

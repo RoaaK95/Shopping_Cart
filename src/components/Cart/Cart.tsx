@@ -2,9 +2,9 @@ import { type FunctionComponent, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 
 import { Quantifier } from '../Quantifier'
-import { CartProps } from '../Products/Products.tsx'
+import { type CartProps } from '../Products/Products.tsx'
 import { TotalPrice } from '../TotalPrice'
-import { Operation } from '../Quantifier/Quantifier.tsx'
+import { type Operation } from '../Quantifier/Quantifier.tsx'
 import classes from './cart.module.scss'
 import { useLocation } from 'react-router-dom'
 

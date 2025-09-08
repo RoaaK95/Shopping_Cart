@@ -1,24 +1,23 @@
-import { type FunctionComponent, useEffect } from "react";
-import {Link} from 'react-router-dom';
-import logo from "../../assets/logo.jpg";
-
-import classes from "./Header.module.scss"
-import { CartWidget } from '../CartWidget'
-import {CartProps} from "../Products/Products"
+import { type FunctionComponent, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import useLocalStorageState from 'use-local-storage-state'
 
+import logo from '../../assets/shopping-cart.svg'
+import brand from '../../assets/brand.svg'
+import { CartWidget } from '../CartWidget'
+import type { CartProps } from '../Products/Products.tsx'
+import classes from './header.module.scss'
 
-export const Header: FunctionComponent =() =>{
-    useEffect(()=>{
-        window.addEventListener("scroll", () => shrinkHeader(), false)
+export const Header: FunctionComponent = () => {
+  useEffect(() => {
+    window.addEventListener("scroll", () => shrinkHeader(), false)
 
-        return ()=>{
-            window.removeEventListener("scroll", () => shrinkHeader())
-        }
-    },[])
+    return () => {
+      window.removeEventListener("scroll", () => shrinkHeader())
+    }
+  }, [])
 
-    //shrink header using DOM 
-    const shrinkHeader = () => {
+  const shrinkHeader = () => {
     const DISTANCE_FROM_TOP = 140
     const headerElement = document.querySelector("header") as HTMLElement
     const logoElement = document.querySelectorAll("img")[0] as HTMLElement
@@ -42,19 +41,20 @@ export const Header: FunctionComponent =() =>{
       productsCountElement.style.fontSize = "2em"
     }
   }
+  const [cart,] = useLocalStorageState<CartProps>('cart', {})
 
-  const [cart,] = useLocalStorageState<CartProps>('cart',{})
   const productsCount: number = Object.keys(cart || {}).length
-    return (
-        <header>
-            <div>
-                <Link to="/">
-                    <img src={logo} className={classes.logo} alt="Shopping cart logo" />
-                </Link>
-            </div>
-            <div>
-                <CartWidget productsCount={productsCount} />
-            </div>
-        </header>
-    )
+
+  return (
+    <header className={classes.header}>
+      <div>
+        <Link to="/">
+          <img src={brand} className={classes.logo} alt="Shopping Cart Application" />
+        </Link>
+      </div>
+      <div>
+        <CartWidget productsCount={productsCount} />
+      </div>
+    </header>
+  )
 }

@@ -8,7 +8,7 @@ interface Props {
   productsCount: number;
 }
 
-const CartWidget: FunctionComponent<Props> = ({ productsCount }) => {
+export const CartWidget: FunctionComponent<Props> = ({ productsCount }) => {
   const navigate = useNavigate();
 
   const navigateToCart = () => {
@@ -29,4 +29,4 @@ const CartWidget: FunctionComponent<Props> = ({ productsCount }) => {
   );
 };
 
-export default CartWidget;
+ 

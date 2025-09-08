@@ -4,7 +4,7 @@ import logo from "../../assets/logo.jpg";
 
 import classes from "./Header.module.scss"
 import { CartWidget } from '../CartWidget'
-import {CartProps} from '../Products/Products,tsx'
+import {CartProps} from "../Products/Products"
 import useLocalStorageState from 'use-local-storage-state'
 
 

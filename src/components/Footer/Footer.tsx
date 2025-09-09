@@ -10,7 +10,7 @@ export const Footer: FunctionComponent = () => {
       <ul>
          
         <li className={classes.footerCopyrights}>
-          © {packageJson.author} {currentYear}. All rights reserved.
+          © {currentYear}. All rights reserved.
         </li>
         <li>
           <div className={classes.version}>v.{packageJson.version}</div>

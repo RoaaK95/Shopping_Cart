@@ -8,9 +8,9 @@ interface Props {
 }
 
 export const CurrencyFormatter: FunctionComponent<Props> = ({ amount }) => {
-  const formattedAmount = amount.toLocaleString('en-GB', {
+  const formattedAmount = amount.toLocaleString('en-US', {
     style: 'currency',
-    currency: 'GBP'
+    currency: 'usd'
   })
 
   return <span className={classes.currency}>{formattedAmount}</span>

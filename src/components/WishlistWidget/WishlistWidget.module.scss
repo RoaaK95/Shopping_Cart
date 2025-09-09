@@ -1,0 +1,16 @@
+.widget {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  height: 2.5rem;
+  margin-right: 0.2rem;
+}
+
+.count {
+  font-size: 1.2em;
+  color: #007185;
+  font-weight: bold;
+}

@@ -8,10 +8,7 @@
   align-items: center;
   flex-direction: row-reverse;
   justify-content: space-between;
-
-  &:hover {
-    outline: 1px solid white;
-  }
+ 
 
 
   .shoppingCart {
@@ -19,7 +16,7 @@
     padding: 1.5rem .4rem;
     will-change: filter;
     transition: filter 300ms;
-  }
+   }
 
   .productsCount {
     z-index: 1;

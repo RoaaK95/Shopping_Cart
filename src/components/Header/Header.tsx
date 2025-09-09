@@ -1,14 +1,19 @@
-import { type FunctionComponent, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import useLocalStorageState from 'use-local-storage-state'
+import type { FunctionComponent } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import useLocalStorageState from 'use-local-storage-state';
+import logo from '../../assets/shopping-cart.svg';
+import brand from '../../assets/brand.svg';
+import { WishlistWidget } from '../WishlistWidget';
+import { CartWidget } from '../CartWidget';
+import type { CartProps } from '../Products/Products';
+import classes from './header.module.scss';
 
-import logo from '../../assets/shopping-cart.svg'
-import brand from '../../assets/brand.svg'
-import { CartWidget } from '../CartWidget'
-import type { CartProps } from '../Products/Products.tsx'
-import classes from './header.module.scss'
+interface HeaderProps {
+  wishlistCount?: number;
+}
 
-export const Header: FunctionComponent = () => {
+export const Header: FunctionComponent<HeaderProps> = ({ wishlistCount = 0 }) => {
   useEffect(() => {
     window.addEventListener("scroll", () => shrinkHeader(), false)
 
@@ -41,20 +46,23 @@ export const Header: FunctionComponent = () => {
       productsCountElement.style.fontSize = "2em"
     }
   }
-  const [cart,] = useLocalStorageState<CartProps>('cart', {})
-
-  const productsCount: number = Object.keys(cart || {}).length
+  const [cart,] = useLocalStorageState<CartProps>('cart', {});
+  const productsCount: number = Object.keys(cart || {}).length;
 
   return (
     <header className={classes.header}>
-      <div>
+      <div className={classes.headerRow}>
         <Link to="/">
-          <img src={brand} className={classes.logo} alt="Shopping Cart Application" />
+          <img src={brand}  className={classes.logo} alt="Shopping Cart Application" />
+        </Link>
+       
+      </div>
+      <div className={classes.widgetRow}>
+        <CartWidget productsCount={productsCount} />
+        <Link to="/wishlist" className={classes.wishlistLink}>
+          <WishlistWidget wishlistCount={wishlistCount} />
         </Link>
       </div>
-      <div>
-        <CartWidget productsCount={productsCount} />
-      </div>
     </header>
-  )
+  );
 }

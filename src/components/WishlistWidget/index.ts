@@ -1,0 +1,1 @@
+export { WishlistWidget } from './WishlistWidget';

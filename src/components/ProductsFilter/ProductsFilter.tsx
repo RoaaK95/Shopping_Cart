@@ -1,4 +1,6 @@
-import {type FunctionComponent} from 'react'
+
+import { type FunctionComponent } from 'react';
+import styles from './ProductsFilter.module.scss';
 
 
 type FilterProps ={
@@ -11,26 +13,26 @@ type FilterProps ={
 const categories: string[] =['all', 'beauty', 'fragrances', 'groceries', 'furniture'];
 const stars: number[] =[1, 2, 3, 4 ,5];
 
-export const ProductsFilter: FunctionComponent<FilterProps> = ({ 
+
+export const ProductsFilter: FunctionComponent<FilterProps> = ({
   selectedCategory,
   onCategoryChange,
   selectedRating,
   onRatingChange,
 }) => {
   return (
-    <div>
-      <select value={selectedCategory} onChange={e=> onCategoryChange(e.target.value)}>
-       {categories.map(cat =>(
-        <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
-       ))}
+    <div className={styles.productsFilter}>
+      <select value={selectedCategory} onChange={e => onCategoryChange(e.target.value)}>
+        {categories.map(cat => (
+          <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+        ))}
       </select>
-      
-      <select value={selectedRating ?? ''} onChange={e=> onRatingChange(Number(e.target.value) || null)}>
-      <option value="">All Ratings</option>
-      {stars.map(star=>(
-        <option key={star} value={star}>{star} Stars</option>
-      ))}
+      <select value={selectedRating ?? ''} onChange={e => onRatingChange(Number(e.target.value) || null)}>
+        <option value="">All Ratings</option>
+        {stars.map(star => (
+          <option key={star} value={star}>{star} Stars</option>
+        ))}
       </select>
     </div>
-  )
-}
+  );
+};

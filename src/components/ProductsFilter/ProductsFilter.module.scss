@@ -1,0 +1,29 @@
+.productsFilter {
+  padding: 0.5rem 1rem;
+  margin: 2rem  0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  
+  select {
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #d9d9d5;
+    font-size: 1em;
+    background: #f8f8f8;
+    color: #222;
+    outline: none;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: #007185;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .productsFilter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+}

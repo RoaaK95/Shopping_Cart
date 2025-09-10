@@ -1,17 +1,21 @@
 .productPage {
   padding: 1rem;
   margin-top: 8rem;
-
+  min-height: 60vh;
   .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-
+     
+    .nullTxt{
+     margin: 10% auto;
+    
+    }
     .product {
       flex-basis: 33.33%;
       margin-bottom: 5rem;
       text-align: center;
-
+       
       h3 {
         color: #007185;
         font-weight: 700;
@@ -22,7 +26,7 @@
       img {
         height: 6rem;
       }
-
+      
       .addToCartBtn {
         background-color: #fbd815;
         width: 13rem;

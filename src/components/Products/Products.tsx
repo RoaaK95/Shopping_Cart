@@ -4,7 +4,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import { CurrencyFormatter } from '../CurrencyFormatter/CurrencyFormatter';
 import classes from './products.module.scss';
 import { Loader } from '../Loader';
-
+import { ProductsFilter } from '../ProductsFilter/ProductsFilter';
 const API_URL = 'https://dummyjson.com/products'
 
 export type Product = {
@@ -14,6 +14,8 @@ export type Product = {
   thumbnail: string;
   image: string;
   quantity: number;
+  category: string;
+  rating: number
 };
 
 export interface CartProps {
@@ -31,7 +33,8 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState(false);
   const [cart, setCart] = useLocalStorageState<CartProps>('cart', {});
-
+  const[selectedCategory, setSelectedCategory] = useState('all');
+  const[selectedRating, setSelectedRating] = useState<number | null>(null);
   useEffect(() => {
     fetchData(API_URL);
   }, []);
@@ -71,12 +74,22 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
   if (isLoading) {
     return <Loader />;
   }
-
+  const filteredProducts = products.filter(product=>{
+    const categoryMatch = selectedCategory === 'all' || product.category === selectedCategory;
+    const ratingMatch = selectedRating === null || Math.floor(product.rating) === selectedRating;
+    return categoryMatch && ratingMatch;
+  })
   return (
     <section className={classes.productPage}>
       <h1>Products</h1>
+      <ProductsFilter 
+      selectedCategory={selectedCategory}
+      onCategoryChange={setSelectedCategory}
+      selectedRating={selectedRating}
+      onRatingChange={setSelectedRating}
+      />
       <div className={classes.container}>
-        {products.map(product => (
+        {filteredProducts.map(product => (
           <div className={classes.product} key={product.id}>
             <img src={product.thumbnail} alt={product.title} />
             <h3>{product.title}</h3>

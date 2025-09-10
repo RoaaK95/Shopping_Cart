@@ -2,15 +2,19 @@
   display: flex;
   align-items: center;
   position: relative;
+ 
 }
 
 .icon {
-  height: 2.5rem;
-  margin-right: 0.2rem;
+   height: 2.5em;
+    padding: 1.5rem .4rem;
+    will-change: filter;
+    transition: filter 300ms; 
 }
 
 .count {
-  font-size: 1.2em;
-  color: #007185;
-  font-weight: bold;
+  z-index: 1;
+    font-size: 1.6em;
+    top: 38px;
+    color: orange;
 }

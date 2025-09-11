@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import { type FunctionComponent } from 'react'
 import classes from "./footer.module.scss"
 import packageJson from '../../../package.json'
 

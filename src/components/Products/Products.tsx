@@ -70,7 +70,7 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
   if (error) {
     return <h3 className={classes.error}>An error occurred when fetching data. Please check the API and try again.</h3>;
   }
-
+ 
   if (isLoading) {
     return <Loader />;
   }
@@ -93,7 +93,7 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
           <p className={classes.nullTxt}>No products found</p>
         ) : (
           filteredProducts.map(product => (
-            <div className={classes.product} key={product.id}>
+            <div  className={classes.product} key={product.id}>
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
               <p>Price: <CurrencyFormatter amount={product.price} /></p>

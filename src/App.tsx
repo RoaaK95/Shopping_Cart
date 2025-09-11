@@ -6,6 +6,7 @@ import { Products, type Product } from './components/Products/Products';
 import { Footer } from './components/Footer';
 import { Cart } from './components/Cart';
 import { Wishlist } from './components/Wishlist';
+import { ProductDetails } from './components/ProductDetails';
 import './app.module.scss';
 
 
@@ -40,6 +41,10 @@ function App() {
           <Route
             path="/wishlist"
             element={<Wishlist wishlist={wishlist ?? {}} removeFromWishlist={removeFromWishlist} />}
+          />
+             <Route
+            path="/product/:id"
+            element={<ProductDetails/>}
           />
         </Routes>
       </main>

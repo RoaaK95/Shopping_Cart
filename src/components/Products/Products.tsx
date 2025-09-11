@@ -1,5 +1,6 @@
 
 import { type FunctionComponent, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
 import { CurrencyFormatter } from '../CurrencyFormatter/CurrencyFormatter';
 import classes from './products.module.scss';
@@ -94,8 +95,10 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
         ) : (
           filteredProducts.map(product => (
             <div  className={classes.product} key={product.id}>
+              <Link to={`/product/${product.id}`}>
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
+              </Link>
               <p>Price: <CurrencyFormatter amount={product.price} /></p>
               <div className={classes.actionRow}>
                 <button className={classes.addToCartBtn} disabled={isInCart(product.id)} onClick={() => addToCart(product)}>Add to Cart</button>

@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import type { ProductDetail } from "../../types";
-import classes from './ProductInfo.module.scss';
-
+ 
 interface ProductInfoProps {
   product: ProductDetail;
 }
@@ -11,10 +10,7 @@ export const ProductInfo: FC<ProductInfoProps> = ({ product }) => (
     <div>
       <strong>Category:</strong> {product.category}
     </div>
-    <div>
-      <strong>Price:</strong> ${product.price} &nbsp;
-      <strong>Discount:</strong> {product.discountPercentage}%
-    </div>
+   
     <div>
       <strong>Rating:</strong> {product.rating} &nbsp;
       <strong>Stock:</strong> {product.stock}

@@ -27,7 +27,8 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({ addToWi
   const { id } = useParams();
   const [product, setProduct] = useState<ProductDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [reviews, setReviews] = useState<Review[]>([])
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [mainImageIdx, setMainImageIdx] = useState(0);
 
   useEffect(() => {
     fetch(`${API_URL}/${id}`)
@@ -55,31 +56,60 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({ addToWi
 
   return (
     <div className={classes.product}>
-      <h1>{product.title}</h1>
-      <h3>{product.description}</h3>
-  <ProductInfo product={product} />
-  <ProductMeta meta={product.meta} qrCodeClassName={classes.qrCode} />
-      <div className={classes.images}>
-        {product.images.map((image, idx) => (
-          <img key={image} src={image} alt={`Product image ${idx + 1}`} />
-        ))}
+      <div className={classes['product-main']}>
+        <div className={classes['product-image']}>
+          <img src={product.images[mainImageIdx] || product.thumbnail} alt={product.title} />
+          {/* Thumbnails */}
+          {product.images.length > 1 && (
+            <div className={classes.thumbnails}>
+              {product.images.map((img, idx) => (
+                <img
+                  key={img}
+                  src={img}
+                  alt={`Thumbnail ${idx + 1}`}
+                  className={mainImageIdx === idx ? classes.activeThumbnail : ''}
+                  onClick={() => setMainImageIdx(idx)}
+                />
+              ))}
+            </div>
+          )}
+          <ProductMeta meta={product.meta} qrCodeClassName={classes.qrCode} />
+        </div>
+        <div className={classes['product-details']}>
+          <h2>{product.title}</h2>
+          <div className={classes.price}>
+            ${product.price}
+            {product.discountPercentage ? (
+              <span className={classes.discount}>
+                &nbsp;-{product.discountPercentage}%
+              </span>
+            ) : null}
+          </div>
+
+          <div className={classes.details}>{product.description}</div>
+          <ProductInfo product={product} />
+          <div className={classes.actions}>
+          <AddToCartButton product={productForAction} />
+         {addToWishlist && removeFromWishlist ? (
+            isInWishlist(product.id) ? (
+              <RemoveFromWishlistButton
+                productId={product.id}
+                removeFromWishlist={removeFromWishlist}
+              />
+            ) : (
+              <AddToWishlistButton
+                product={productForAction}
+                addToWishlist={addToWishlist}
+                isInWishlist={false}
+              />
+            )
+          ) : null} 
+        </div>
+        </div>
       </div>
-  <Reviews reviews={reviews} />
-      <AddToCartButton product={productForAction} />
-      {addToWishlist && removeFromWishlist ? (
-        isInWishlist(product.id) ? (
-          <RemoveFromWishlistButton
-            productId={product.id}
-            removeFromWishlist={removeFromWishlist}
-          />
-        ) : (
-          <AddToWishlistButton
-            product={productForAction}
-            addToWishlist={addToWishlist}
-            isInWishlist={false}
-          />
-        )
-      ) : null}
+      <div className={classes['product-reviews']}>
+        <Reviews reviews={reviews} />
+      </div>
     </div>
   )
 }

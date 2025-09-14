@@ -1,27 +1,14 @@
-
+import type { Product } from '../../types';
 import { type FunctionComponent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import useLocalStorageState from 'use-local-storage-state';
 import { CurrencyFormatter } from '../CurrencyFormatter/CurrencyFormatter';
 import classes from './products.module.scss';
 import { Loader } from '../Loader';
 import { ProductsFilter } from '../ProductsFilter/ProductsFilter';
+import { AddToCartButton } from '../AddToCartButton/AddToCartButton';
 const API_URL = 'https://dummyjson.com/products'
 
-export type Product = {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
-  image: string;
-  quantity: number;
-  category: string;
-  rating: number
-};
 
-export interface CartProps {
-  [productId: string]: Product;
-}
 
 interface ProductsProps {
   addToWishlist?: (product: Product) => void;
@@ -33,9 +20,9 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState(false);
-  const [cart, setCart] = useLocalStorageState<CartProps>('cart', {});
-  const[selectedCategory, setSelectedCategory] = useState('all');
-  const[selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+
   useEffect(() => {
     fetchData(API_URL);
   }, []);
@@ -51,57 +38,51 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
         setError(true);
         setIsLoading(false);
       }
-    } catch (error) {
+    } catch {
       setError(true);
       setIsLoading(false);
     }
   }
 
-  const addToCart = (product: Product): void => {
-    product.quantity = 1;
-    setCart((prevCart) => ({
-      ...prevCart,
-      [product.id]: product,
-    }));
-  };
-
-  const isInCart = (productId: number): boolean => Object.keys(cart || {}).includes(productId.toString());
-  const isInWishlist = (productId: number): boolean => wishlist ? Object.keys(wishlist).includes(productId.toString()) : false;
+  const isInWishlist = (productId: number): boolean =>
+    wishlist ? Object.keys(wishlist).includes(productId.toString()) : false;
 
   if (error) {
     return <h3 className={classes.error}>An error occurred when fetching data. Please check the API and try again.</h3>;
   }
- 
+
   if (isLoading) {
     return <Loader />;
   }
-  const filteredProducts = products.filter(product=>{
+
+  const filteredProducts = products.filter(product => {
     const categoryMatch = selectedCategory === 'all' || product.category === selectedCategory;
     const ratingMatch = selectedRating === null || Math.floor(product.rating) === selectedRating;
     return categoryMatch && ratingMatch;
-  })
+  });
+
   return (
     <section className={classes.productPage}>
       <h1>Products</h1>
-      <ProductsFilter 
-      selectedCategory={selectedCategory}
-      onCategoryChange={setSelectedCategory}
-      selectedRating={selectedRating}
-      onRatingChange={setSelectedRating}
+      <ProductsFilter
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        selectedRating={selectedRating}
+        onRatingChange={setSelectedRating}
       />
       <div className={classes.container}>
         {filteredProducts.length === 0 ? (
           <p className={classes.nullTxt}>No products found</p>
         ) : (
           filteredProducts.map(product => (
-            <div  className={classes.product} key={product.id}>
+            <div className={classes.product} key={product.id}>
               <Link to={`/product/${product.id}`}>
-              <img src={product.thumbnail} alt={product.title} />
-              <h3>{product.title}</h3>
+                <img src={product.thumbnail} alt={product.title} />
+                <h3>{product.title}</h3>
               </Link>
               <p>Price: <CurrencyFormatter amount={product.price} /></p>
               <div className={classes.actionRow}>
-                <button className={classes.addToCartBtn} disabled={isInCart(product.id)} onClick={() => addToCart(product)}>Add to Cart</button>
+                <AddToCartButton product={product} />
                 {addToWishlist && removeFromWishlist && (
                   <button
                     className={classes.heartBtn}

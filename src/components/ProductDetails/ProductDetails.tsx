@@ -2,51 +2,13 @@ import { useEffect, useState, type FunctionComponent } from "react"
 import { useParams } from "react-router-dom"
 import { Loader } from "../Loader";
 import classes from './ProductDetails.module.scss'
-
-export type Review = {
-  rating: number
-  comment: string
-  date: string | Date
-  reviewerName: string
-  reviewerEmail: string
-}
-
-export type Product = {
-  title: string
-  images: string[]
-  description: string
-  reviews: Review[]
-  category: string
-  price: number
-  discountPercentage: number
-  rating: number
-  stock: number
-  tags: string[]
-  brand: string
-  sku: string
-  weight: number
-  dimensions: {
-    width: number
-    height: number
-    depth: number
-  }
-  warrantyInformation: string
-  shippingInformation: string
-  availabilityStatus: string
-  returnPolicy: string
-  minimumOrderQuantity: number
-  meta: {
-    createdAt: string
-    updatedAt: string
-    barcode: string
-    qrCode: string
-  }
-}
+import { AddToCartButton } from '../AddToCartButton/AddToCartButton';
+import type { ProductDetail, Review } from "../../types";
 
 export const ProductDetails: FunctionComponent = () => {
   const API_URL: string = 'https://dummyjson.com/products'
   const { id } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<ProductDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState<Review[]>([])
 
@@ -66,6 +28,7 @@ export const ProductDetails: FunctionComponent = () => {
   return (
     <div className={classes.product}>
       <h1>{product.title}</h1>
+     
       <h3>{product.description}</h3>
       <div>
         <strong>Category:</strong> {product.category}
@@ -137,7 +100,20 @@ export const ProductDetails: FunctionComponent = () => {
             </span>
           </p>
         );
+        
       })}
+  <AddToCartButton
+        product={{
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          thumbnail: product.thumbnail,
+          image: product.images[0] || product.thumbnail,
+          quantity: product.quantity || 1,
+          category: product.category,
+          rating: product.rating,
+        }}
+      />
     </div>
   )
 }

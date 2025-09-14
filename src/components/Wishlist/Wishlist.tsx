@@ -1,14 +1,17 @@
-
-import type { FunctionComponent } from 'react';
-import type { Product } from '../Products/Products';
-import classes from './wishlist.module.scss';
+import type { FunctionComponent } from "react";
+import type { Product } from "../../types";
+import { AddToCartButton } from "../AddToCartButton/AddToCartButton";
+import classes from "./wishlist.module.scss";
 
 interface WishlistProps {
   wishlist: { [productId: string]: Product };
   removeFromWishlist: (productId: number) => void;
 }
 
-export const Wishlist: FunctionComponent<WishlistProps> = ({ wishlist, removeFromWishlist }) => {
+export const Wishlist: FunctionComponent<WishlistProps> = ({
+  wishlist,
+  removeFromWishlist,
+}) => {
   const wishlistItems = Object.values(wishlist || {});
 
   return (
@@ -18,12 +21,15 @@ export const Wishlist: FunctionComponent<WishlistProps> = ({ wishlist, removeFro
         <div className={classes.empty}>Your wishlist is empty.</div>
       ) : (
         <div className={classes.container}>
-          {wishlistItems.map(product => (
+          {wishlistItems.map((product) => (
             <div className={classes.product} key={product.id}>
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
               <p>Price: {product.price}</p>
-              <button onClick={() => removeFromWishlist(product.id)}>Remove</button>
+              <button onClick={() => removeFromWishlist(product.id)}>
+                Remove
+              </button>
+              <AddToCartButton product={product} />
             </div>
           ))}
         </div>

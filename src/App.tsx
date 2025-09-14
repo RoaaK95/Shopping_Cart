@@ -1,13 +1,14 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
  import useLocalStorageState from 'use-local-storage-state';
 import { Header } from './components/Header';
-import { Products, type Product } from './components/Products/Products';
+import { Products } from './components/Products/Products';
 import { Footer } from './components/Footer';
 import { Cart } from './components/Cart';
 import { Wishlist } from './components/Wishlist';
 import { ProductDetails } from './components/ProductDetails';
 import './app.module.scss';
+import type { Product } from './types';
+import { AddToCartButton } from './components/AddToCartButton';
 
 
 function App() {

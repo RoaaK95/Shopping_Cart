@@ -3,9 +3,23 @@ import { useParams } from "react-router-dom"
 import { Loader } from "../Loader";
 import classes from './ProductDetails.module.scss'
 import { AddToCartButton } from '../AddToCartButton/AddToCartButton';
-import type { ProductDetail, Review } from "../../types";
+import type { Product, ProductDetail, Review } from "../../types";
+import { AddToWishlistButton } from "../AddToWishlistButton";
+import { RemoveFromWishlistButton } from "../RemoveFromWishlistButton";
 
-export const ProductDetails: FunctionComponent = () => {
+
+ 
+
+
+interface ProductDetailsProps {
+  addToWishlist?: (product: Product) => void;
+  removeFromWishlist?: (productId: number) => void;
+  wishlist?: { [productId: string]: Product };
+}
+
+export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({ addToWishlist, removeFromWishlist, wishlist }) => {
+  const isInWishlist = (productId: number): boolean =>
+    wishlist ? Object.keys(wishlist).includes(productId.toString()) : false;
   const API_URL: string = 'https://dummyjson.com/products'
   const { id } = useParams();
   const [product, setProduct] = useState<ProductDetail | null>(null);
@@ -24,11 +38,21 @@ export const ProductDetails: FunctionComponent = () => {
 
   if (loading) return <Loader />
   if (!product) return <div>Product not found</div>
+  // Avoid redundant product object construction
+  const productForAction = {
+    id: product.id,
+    title: product.title,
+    price: product.price,
+    thumbnail: product.thumbnail,
+    image: product.images[0] || product.thumbnail,
+    quantity: product.quantity || 1,
+    category: product.category,
+    rating: product.rating,
+  };
 
   return (
     <div className={classes.product}>
       <h1>{product.title}</h1>
-     
       <h3>{product.description}</h3>
       <div>
         <strong>Category:</strong> {product.category}
@@ -100,20 +124,22 @@ export const ProductDetails: FunctionComponent = () => {
             </span>
           </p>
         );
-        
       })}
-  <AddToCartButton
-        product={{
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          thumbnail: product.thumbnail,
-          image: product.images[0] || product.thumbnail,
-          quantity: product.quantity || 1,
-          category: product.category,
-          rating: product.rating,
-        }}
-      />
+      <AddToCartButton product={productForAction} />
+      {addToWishlist && removeFromWishlist ? (
+        isInWishlist(product.id) ? (
+          <RemoveFromWishlistButton
+            productId={product.id}
+            removeFromWishlist={removeFromWishlist}
+          />
+        ) : (
+          <AddToWishlistButton
+            product={productForAction}
+            addToWishlist={addToWishlist}
+            isInWishlist={false}
+          />
+        )
+      ) : null}
     </div>
   )
 }

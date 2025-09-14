@@ -45,7 +45,7 @@ function App() {
           />
              <Route
             path="/product/:id"
-            element={<ProductDetails/>}
+            element={<ProductDetails addToWishlist={addToWishlist} removeFromWishlist={removeFromWishlist} wishlist={wishlist} />}
           />
         </Routes>
       </main>

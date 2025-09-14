@@ -6,6 +6,8 @@ import classes from './products.module.scss';
 import { Loader } from '../Loader';
 import { ProductsFilter } from '../ProductsFilter/ProductsFilter';
 import { AddToCartButton } from '../AddToCartButton/AddToCartButton';
+import { AddToWishlistButton } from '../AddToWishlistButton';
+import { RemoveFromWishlistButton } from '../RemoveFromWishlistButton';
 const API_URL = 'https://dummyjson.com/products'
 
 
@@ -84,29 +86,18 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
               <div className={classes.actionRow}>
                 <AddToCartButton product={product} />
                 {addToWishlist && removeFromWishlist && (
-                  <button
-                    className={classes.heartBtn}
-                    aria-label={isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
-                    onClick={() =>
-                      isInWishlist(product.id)
-                        ? removeFromWishlist(product.id)
-                        : addToWishlist(product)
-                    }
-                  >
-                    <svg
-                      width="26"
-                      height="26"
-                      viewBox="0 0 24 24"
-                      fill={isInWishlist(product.id) ? 'red' : 'none'}
-                      stroke="red"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      style={{ display: 'block' }}
-                    >
-                      <path d="M12 21s-6.5-5.2-9-8.3C1.2 10.1 1 7.6 3.1 5.7 5.2 3.8 8.1 4.2 10 6.1l2 2 2-2c1.9-1.9 4.8-2.3 6.9-.4 2.1 1.9 1.9 4.4.1 7C18.5 15.8 12 21 12 21z" />
-                    </svg>
-                  </button>
+                  isInWishlist(product.id) ? (
+                    <RemoveFromWishlistButton
+                      productId={product.id}
+                      removeFromWishlist={removeFromWishlist}
+                    />
+                  ) : (
+                    <AddToWishlistButton
+                      product={product}
+                      addToWishlist={addToWishlist}
+                      isInWishlist={false}
+                    />
+                  )
                 )}
               </div>
             </div>

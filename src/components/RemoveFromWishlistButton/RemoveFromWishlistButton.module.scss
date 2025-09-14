@@ -1,0 +1,11 @@
+.heartBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: transform 0.1s;
+}
+.heartBtn:active {
+  transform: scale(0.95);
+}

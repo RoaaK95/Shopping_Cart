@@ -14,7 +14,7 @@ export const ProductMeta: FC<ProductMetaProps> = ({ meta, qrCodeClassName }) => 
       <li>Updated At: {new Date(meta.updatedAt).toLocaleString()}</li>
       <li>Barcode: {meta.barcode}</li>
       <li className={qrCodeClassName}>
-        QR Code: <img src={meta.qrCode} alt="QR Code" style={{ height: 60 }} />
+        QR Code: <img src={meta.qrCode} alt="QR Code"   />
       </li>
     </ul>
   </div>

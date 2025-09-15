@@ -1,3 +1,4 @@
+import { useIsMobile } from "./useIsMobile";
 import { useEffect, useState, type FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../Loader";
@@ -9,6 +10,7 @@ import { RemoveFromWishlistButton } from "../RemoveFromWishlistButton";
 import { Reviews } from "../Reviews/Reviews";
 import { ProductInfo } from "./ProductInfo";
 import { ProductMeta } from "./ProductMeta";
+import { ProductImage } from "./ProductImage";
 import { ProductPrice } from "../ProductPrice/ProductPrice";
 
 interface ProductDetailsProps {
@@ -44,12 +46,15 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
   // Scroll to top when product changes
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]); 
+  }, [id]);
 
+  const isMobile = useIsMobile();
   if (loading) return <Loader />;
   if (!product) return <div>Product not found</div>;
-   const discountedPrice = product.discountPercentage
-    ? Number((product.price * (100 - product.discountPercentage) / 100).toFixed(2))
+  const discountedPrice = product.discountPercentage
+    ? Number(
+        ((product.price * (100 - product.discountPercentage)) / 100).toFixed(2)
+      )
     : product.price;
   const productForAction = {
     id: product.id,
@@ -65,29 +70,18 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
   return (
     <div className={classes.product}>
       <div className={classes.productMain}>
-        <div className={classes.productImage}>
-          <img
-            src={product.images[mainImageIdx] || product.thumbnail}
-            alt={product.title}
-          />
-          {/* Thumbnails */}
-          {product.images.length > 1 && (
-            <div className={classes.thumbnails}>
-              {product.images.map((img, idx) => (
-                <img
-                  key={img}
-                  src={img}
-                  alt={`Thumbnail ${idx + 1}`}
-                  className={
-                    mainImageIdx === idx ? classes.activeThumbnail : ""
-                  }
-                  onClick={() => setMainImageIdx(idx)}
-                />
-              ))}
-            </div>
-          )}
-          <ProductMeta meta={product.meta} qrCodeClassName={classes.qrCode} />
-        </div>
+        {!isMobile && (
+          <div className={classes.leftSection}>
+            <ProductImage
+              images={product.images}
+              thumbnail={product.thumbnail}
+              mainImageIdx={mainImageIdx}
+              setMainImageIdx={setMainImageIdx}
+              title={product.title}
+            />
+            <ProductMeta meta={product.meta} qrCodeClassName={classes.qrCode} />
+          </div>
+        )}
         <div className={classes.productDetails}>
           <p className={classes.tagBox}>
             {product.tags.map((tag) => (
@@ -97,12 +91,25 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
             ))}
           </p>
           <h2>{product.title}</h2>
+          
+          {isMobile && (
+            <ProductImage
+              images={product.images}
+              thumbnail={product.thumbnail}
+              mainImageIdx={mainImageIdx}
+              setMainImageIdx={setMainImageIdx}
+              title={product.title}
+            />
+          )}
           <ProductPrice
             price={product.price}
             discountPercentage={product.discountPercentage}
           />
           <div className={classes.details}>{product.description}</div>
           <ProductInfo product={product} />
+          {isMobile && (
+            <ProductMeta meta={product.meta} qrCodeClassName={classes.qrCode} />)}
+
           <div className={classes.actions}>
             <AddToCartButton product={productForAction} />
             {addToWishlist && removeFromWishlist ? (

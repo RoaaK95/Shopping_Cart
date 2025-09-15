@@ -138,10 +138,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .product {
+  .product, .product h2 {
      color: #ffffff;
   }
-
+  
   .product-details .details {
     color: #cccccc;
   }

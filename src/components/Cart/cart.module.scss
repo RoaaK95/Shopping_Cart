@@ -2,13 +2,7 @@
   padding: 1rem;
   margin-top: 8rem;
   min-height: 55vh;
- a{
-    text-decoration: none !important;
-    color: inherit !important;
- }
-   a:visited {
-    color: inherit !important;
-  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -18,24 +12,33 @@
       border-top: 1px dotted;
       border-left: 1px dotted;
       border-right: 1px dotted;
-      padding: .3rem .5rem;
+      padding: 0.6rem 2rem;
       align-items: center;
-      
+      flex-direction: row;
+      justify-content: space-between;
+      a {
+        text-decoration: none !important;
+        color: inherit !important;
+        display: flex;
+        align-items: center;
+      }
+      a:visited {
+        color: inherit !important;
+      }
       h3 {
         color: #007185;
         font-weight: 700;
         font-size: 1em;
         line-height: 20px;
-        margin: .3rem;
+        margin: 0.3rem;
         flex: 1;
       }
 
       img {
         max-width: 3rem;
         height: auto;
-        margin: .875rem;
+        margin: 0.875rem;
       }
     }
   }
 }
-

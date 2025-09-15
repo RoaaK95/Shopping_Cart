@@ -15,6 +15,16 @@
 
         &:disabled {
           opacity: 0.5;
-          background-color: lightgray;
-          color: white;
+          background-color: rgb(219, 219, 219);
+          color: rgb(255, 255, 255);
         }}
+
+
+        @media (prefers-color-scheme: light) {
+  .addToCartBtn {
+    
+        &:disabled {
+           background-color: rgb(177, 177, 177);
+         }
+      }
+}

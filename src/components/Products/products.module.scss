@@ -34,27 +34,7 @@
   a:visited {
     color: inherit !important;
   }
-      .addToCartBtn {
-        background-color: #fbd815;
-        width: 13rem;
-        padding: 0.5rem;
-        font-size: 1.1em;
-        border-radius: 25px;
-        border-color: #d5d9d9;
-        border-style: solid;
-        border-width: 1px;
-
-        &:hover:not([disabled]) {
-          background-color: #eecf1d;
-          cursor: pointer;
-        }
-
-        &:disabled {
-          opacity: 0.5;
-          background-color: lightgray;
-          color: white;
-        }
-      }
+     
       .actionRow {
         display: flex;
         flex-direction: row;
@@ -93,10 +73,8 @@
 .error {
   color: red;
   text-align: center;
+  margin-top: 25%;
+  margin-bottom: 12%;
 }
 
-@media (prefers-color-scheme: dark) {
-  .error {
-    color: rgb(255, 255, 255);
-  }
-}
+ 

@@ -58,18 +58,17 @@ export const Cart: FunctionComponent = () => {
 
       <div className={classes.container}>
         {getProducts().map((product) => (
-          <Link to={`/product/${product.id}`}>
-            <div className={classes.product} key={product.id}>
+          <div className={classes.product} key={product.id}>
+            <Link to={`/product/${product.id}`}>
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
-
-              <Quantifier
-                removeProductCallback={() => handleRemoveProduct(product.id)}
-                productId={product.id}
-                handleUpdateQuantity={handleUpdateQuantity}
-              />
-            </div>
-          </Link>
+            </Link>
+            <Quantifier
+              removeProductCallback={() => handleRemoveProduct(product.id)}
+              productId={product.id}
+              handleUpdateQuantity={handleUpdateQuantity}
+            />
+          </div>
         ))}
       </div>
       <TotalPrice amount={totalPrice} />

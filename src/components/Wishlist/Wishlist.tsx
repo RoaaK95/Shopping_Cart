@@ -2,6 +2,7 @@ import type { FunctionComponent } from "react";
 import type { Product } from "../../types";
 import { AddToCartButton } from "../AddToCartButton/AddToCartButton";
 import classes from "./wishlist.module.scss";
+import { Link } from "react-router-dom";
 
 interface WishlistProps {
   wishlist: { [productId: string]: Product };
@@ -23,8 +24,10 @@ export const Wishlist: FunctionComponent<WishlistProps> = ({
         <div className={classes.container}>
           {wishlistItems.map((product) => (
             <div className={classes.product} key={product.id}>
+              <Link to={`/product/${product.id}`}>
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
+              </Link>
               <p>Price: {product.price}</p>
               <button onClick={() => removeFromWishlist(product.id)}>
                 Remove

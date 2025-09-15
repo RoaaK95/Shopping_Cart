@@ -43,11 +43,13 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
 
   if (loading) return <Loader />;
   if (!product) return <div>Product not found</div>;
-  // Avoid redundant product object construction
+   const discountedPrice = product.discountPercentage
+    ? Number((product.price * (100 - product.discountPercentage) / 100).toFixed(2))
+    : product.price;
   const productForAction = {
     id: product.id,
     title: product.title,
-    price: product.price,
+    price: discountedPrice,
     thumbnail: product.thumbnail,
     image: product.images[0] || product.thumbnail,
     quantity: product.quantity || 1,

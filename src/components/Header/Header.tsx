@@ -2,11 +2,10 @@ import type { FunctionComponent } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
-import logo from '../../assets/shopping-cart.svg';
 import brand from '../../assets/brand.svg';
 import { WishlistWidget } from '../WishlistWidget';
 import { CartWidget } from '../CartWidget';
-import type { CartProps } from '../Products/Products';
+import type { CartProps } from '../../types';
 import classes from './header.module.scss';
 
 interface HeaderProps {

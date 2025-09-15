@@ -2,7 +2,7 @@ import { type FunctionComponent, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 
 import { Quantifier } from '../Quantifier'
-import { type CartProps } from '../Products/Products.tsx'
+import { type CartProps } from '../../types'
 import { TotalPrice } from '../TotalPrice'
 import { type Operation } from '../Quantifier/Quantifier.tsx'
 import classes from './cart.module.scss'

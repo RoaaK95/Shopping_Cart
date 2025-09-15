@@ -8,8 +8,6 @@ import { Wishlist } from './components/Wishlist';
 import { ProductDetails } from './components/ProductDetails';
 import './app.module.scss';
 import type { Product } from './types';
-import { AddToCartButton } from './components/AddToCartButton';
-
 
 function App() {
   // Wishlist state in localStorage

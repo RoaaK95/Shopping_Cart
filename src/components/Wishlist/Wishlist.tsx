@@ -4,7 +4,8 @@ import { AddToCartButton } from "../AddToCartButton/AddToCartButton";
 import classes from "./wishlist.module.scss";
 import { Link } from "react-router-dom";
 import { CurrencyFormatter } from "../CurrencyFormatter";
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 interface WishlistProps {
   wishlist: { [productId: string]: Product };
   removeFromWishlist: (productId: number) => void;
@@ -15,7 +16,11 @@ export const Wishlist: FunctionComponent<WishlistProps> = ({
   removeFromWishlist,
 }) => {
   const wishlistItems = Object.values(wishlist || {});
+    const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <section className={classes.wishlist}>
       <h1>Wishlist</h1>

@@ -41,6 +41,11 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
       });
   }, [id]);
 
+  // Scroll to top when product changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]); 
+
   if (loading) return <Loader />;
   if (!product) return <div>Product not found</div>;
    const discountedPrice = product.discountPercentage

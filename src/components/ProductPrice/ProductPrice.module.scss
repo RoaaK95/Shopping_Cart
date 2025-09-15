@@ -1,0 +1,28 @@
+ .price {
+  color: #e94560;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  width: 100%;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pricebefore {
+  color: #888;
+  font-size: 1.2rem;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.discount {
+  color: #e94560;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  border: 2px solid #e94560;
+ 
+}

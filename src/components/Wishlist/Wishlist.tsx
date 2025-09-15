@@ -3,6 +3,7 @@ import type { Product } from "../../types";
 import { AddToCartButton } from "../AddToCartButton/AddToCartButton";
 import classes from "./wishlist.module.scss";
 import { Link } from "react-router-dom";
+import { CurrencyFormatter } from "../CurrencyFormatter";
 
 interface WishlistProps {
   wishlist: { [productId: string]: Product };
@@ -28,7 +29,15 @@ export const Wishlist: FunctionComponent<WishlistProps> = ({
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
               </Link>
-              <p>Price: {product.price}</p>
+              <p>Price: 
+              {(()=>{
+                let discountedPrice = product.price;
+                if(product.discountPercentage) {
+                  discountedPrice=Number((product.price *(100 - product.discountPercentage)/100).toFixed(2));
+                }
+                return <p>{<CurrencyFormatter amount={discountedPrice} />} </p>
+              })()}
+              </p>
               <button onClick={() => removeFromWishlist(product.id)}>
                 Remove
               </button>

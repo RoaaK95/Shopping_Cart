@@ -9,6 +9,7 @@ import { RemoveFromWishlistButton } from "../RemoveFromWishlistButton";
 import { Reviews } from "../Reviews/Reviews";
 import { ProductInfo } from "./ProductInfo";
 import { ProductMeta } from "./ProductMeta";
+import { ProductPrice } from "../ProductPrice/ProductPrice"
 
 
  
@@ -77,15 +78,7 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = ({ addToWi
         </div>
         <div className={classes['product-details']}>
           <h2>{product.title}</h2>
-          <div className={classes.price}>
-            ${product.price}
-            {product.discountPercentage ? (
-              <span className={classes.discount}>
-                &nbsp;-{product.discountPercentage}%
-              </span>
-            ) : null}
-          </div>
-
+          <ProductPrice price={product.price} discountPercentage={product.discountPercentage} />
           <div className={classes.details}>{product.description}</div>
           <ProductInfo product={product} />
           <div className={classes.actions}>

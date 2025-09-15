@@ -82,7 +82,13 @@ export const Products: FunctionComponent<ProductsProps> = ({ addToWishlist, remo
                 <img src={product.thumbnail} alt={product.title} />
                 <h3>{product.title}</h3>
               </Link>
-              <p>Price: <CurrencyFormatter amount={product.price} /></p>
+                {(() => {
+                  let discountedPrice = product.price;
+                  if (product.discountPercentage) {
+                    discountedPrice = Number((product.price * (100 - product.discountPercentage) / 100).toFixed(2));
+                  }
+                  return <p>Price: <CurrencyFormatter amount={discountedPrice} /></p>;
+                })()}
               <div className={classes.actionRow}>
                 <AddToCartButton product={product} />
                 {addToWishlist && removeFromWishlist && (

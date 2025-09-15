@@ -48,7 +48,12 @@ export const Cart: FunctionComponent = () => {
   const getProducts = () => Object.values(cart || {});
 
   const totalPrice = getProducts().reduce(
-    (accumulator, product) => accumulator + product.price * product.quantity,
+    (accumulator, product) => {
+      const discountedPrice = product.discountPercentage
+        ? Number((product.price * (100 - product.discountPercentage) / 100).toFixed(2))
+        : product.price;
+      return accumulator + discountedPrice * product.quantity;
+    },
     0
   );
 

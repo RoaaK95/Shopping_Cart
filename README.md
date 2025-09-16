@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/070f3fc4-8bb4-4213-b05e-d6c1a77a2934
 #  Shopping Cart  
 
 - A simple shopping cart application built with **React**, **TypeScript**, and **Vite**.  

@@ -1,8 +1,10 @@
+
+https://github.com/user-attachments/assets/070f3fc4-8bb4-4213-b05e-d6c1a77a2934
 #  Shopping Cart  
 
 - A simple shopping cart application built with **React**, **TypeScript**, and **Vite**.  
-Originally based on [mihailgaberov/shopping-cart-app](https://github.com/mihailgaberov/shopping-cart-app), then extended with new features, pages, and design improvements.
-- [[LIVE DEMO](https://shopping-cart-nu-murex.vercel.app/)]  (https://shopping-cart-nu-murex.vercel.app/)
+ Originally based on [mihailgaberov/shopping-cart-app](https://github.com/mihailgaberov/shopping-cart-app),
+ then extended with new features, pages, and design improvements.  
 - [![Live Demo](https://img.shields.io/badge/demo-online-brightgreen)](https://shopping-cart-nu-murex.vercel.app/)
 
 ## 🚀 Features
@@ -37,10 +39,10 @@ This project uses the [[DummyJSON API](https://dummyjson.com/products)]  (https:
 
 <img width="1920" height="946" alt="Screenshot 2025-09-16 104415" src="https://github.com/user-attachments/assets/bfa2440f-9385-463f-b58e-ecd246d2494e" />
   
-<img width="1920" height="950" alt="Screenshot 2025-09-16 104423" src="https://github.com/user-attachments/assets/fcc0b55a-2dc4-43f1-a912-ff48b6aceee6" />
+![Shopping Cart - Google Chrome 2025-09-16 11-40-03](https://github.com/user-attachments/assets/b3de78d8-444b-49cb-81f7-37cc51c2bd30)
 
-<img width="1920" height="941" alt="Screenshot 2025-09-16 104431" src="https://github.com/user-attachments/assets/1460876f-9c73-42b9-83b4-26a22c0f0a69" />
-  
+
+
 
 
 

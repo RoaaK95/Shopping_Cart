@@ -2,7 +2,7 @@
 
 - A simple shopping cart application built with **React**, **TypeScript**, and **Vite**.  
 Originally based on [mihailgaberov/shopping-cart-app](https://github.com/mihailgaberov/shopping-cart-app), then extended with new features, pages, and design improvements.
-
+- [LIVE DEMO](https://shopping-cart-nu-murex.vercel.app/)
 
 
 ## 🚀 Features

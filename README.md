@@ -31,7 +31,7 @@
 This project uses the [[DummyJSON API](https://dummyjson.com/products)]  (https://dummyjson.com/products) to fetch products data, including categories, descriptions, images, and pricing.
 
  
-## 📸 Screenshots and Recordings
+## 📸 Screenshots
   
 <img width="1920" height="945" alt="Screenshot 2025-09-16 104249" src="https://github.com/user-attachments/assets/3eacc450-1cca-4f0b-b33a-be858f4d0ef5" />
 

@@ -37,8 +37,6 @@ This project uses the [[DummyJSON API](https://dummyjson.com/products)]  (https:
 
 <img width="1920" height="946" alt="Screenshot 2025-09-16 104415" src="https://github.com/user-attachments/assets/bfa2440f-9385-463f-b58e-ecd246d2494e" />
 
- ![Shopping Cart - Google Chrome 2025-09-16 11-40-03](https://github.com/user-attachments/assets/a40dcd51-2138-44c6-b437-58729db1a76f)
-
 
 
 

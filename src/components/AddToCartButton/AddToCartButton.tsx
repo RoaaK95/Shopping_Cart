@@ -1,7 +1,7 @@
 import { type FunctionComponent } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import type { Product, CartProps } from "../../types";
-import classes from "./addToCartButton.module.scss";
+import classes from "./AddToCartButton.module.scss";
 
 
 interface AddToCartButtonProps {

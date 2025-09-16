@@ -1,5 +1,5 @@
 import { type FunctionComponent } from 'react'
-import classes from "./footer.module.scss"
+import classes from "./Footer.module.scss"
 import packageJson from '../../../package.json'
 
 export const Footer: FunctionComponent = () => {

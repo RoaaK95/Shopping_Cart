@@ -19,7 +19,6 @@ Originally based on [mihailgaberov/shopping-cart-app](https://github.com/mihailg
 - **Product Price** – Display discounted price of the product and discount precentage
 - **Style Adjustments** – improved layout, design, and UI consistency, and mobile responsiveness beyond the original tutorial  
 
----
 
 ## 🛠️ Tech Stack
 

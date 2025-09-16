@@ -6,7 +6,7 @@ import brand from '../../assets/brand.svg';
 import { WishlistWidget } from '../WishlistWidget';
 import { CartWidget } from '../CartWidget';
 import type { CartProps } from '../../types';
-import classes from './header.module.scss';
+import classes from './Header.module.scss';
 
 interface HeaderProps {
   wishlistCount?: number;
